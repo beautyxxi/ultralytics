@@ -1,21 +1,18 @@
 from ultralytics import YOLO
 
-# model = YOLO("zxx/v1.yaml")
-
-# Load a model
-model = YOLO("yolo11n.pt")    
+model = YOLO("zxx/yolo11s.yaml")  
 
 # Train the model
 train_results = model.train(
     data="VisDrone.yaml",  # path to dataset YAML
     epochs=50,  # number of training epochs
     imgsz=640,  # training image size
-    device="cpu",  # device to run on, i.e. device=0 or device=0,1,2,3 or device=cpu
-    batch=1,
+    device=0,  # device to run on, i.e. device=0 or device=0,1,2,3 or device=cpu
+    batch=16,
 )
 
 # Evaluate model performance on the validation set
-# metrics = model.val()
+metrics = model.val()
 
 # Perform object detection on an image
 # results = model.predict(
