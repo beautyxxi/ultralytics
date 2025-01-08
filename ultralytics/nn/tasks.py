@@ -7,6 +7,9 @@ import types
 from copy import deepcopy
 from pathlib import Path
 
+# 添加新模块
+from .AddModule import *
+
 import torch
 import torch.nn as nn
 
@@ -1030,6 +1033,11 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
                 n = 1
             if m is C3k2 and scale in "mlx":  # for M/L/X sizes
                 args[3] = True
+
+        elif m in {CBAM}:
+            c2 = ch[f]
+            args = [c2, *args]
+
         elif m is AIFI:
             args = [ch[f], *args]
         elif m in {HGStem, HGBlock}:
