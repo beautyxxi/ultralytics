@@ -7,9 +7,6 @@ import types
 from copy import deepcopy
 from pathlib import Path
 
-# 添加新模块
-from .AddModule import *
-
 import torch
 import torch.nn as nn
 
@@ -65,6 +62,12 @@ from ultralytics.nn.modules import (
     WorldDetect,
     v10Detect,
 )
+
+# 改进模块
+from ultralytics.nn.modules.conv import (
+    CBAM,
+)
+
 from ultralytics.utils import DEFAULT_CFG_DICT, DEFAULT_CFG_KEYS, LOGGER, colorstr, emojis, yaml_load
 from ultralytics.utils.checks import check_requirements, check_suffix, check_yaml
 from ultralytics.utils.loss import (
@@ -1034,6 +1037,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             if m is C3k2 and scale in "mlx":  # for M/L/X sizes
                 args[3] = True
 
+        # 改进模块CBAM
         elif m in {CBAM}:
             c2 = ch[f]
             args = [c2, *args]
