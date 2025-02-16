@@ -1,7 +1,8 @@
 from ultralytics import YOLO, RTDETR
 
 # model = YOLO("zxx/yolo11s.yaml")  
-model = RTDETR("zxx/yolo11s-AIFI.yaml")
+# model = RTDETR("zxx/yolo11s-AIFI.yaml")
+model = RTDETR("rt-detr/rtdetr-resnet50.yaml")
 
 # Train the model
 train_results = model.train(
