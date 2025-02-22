@@ -1,15 +1,40 @@
-from ultralytics import YOLO
+from ultralytics import YOLO, RTDETR
 
-model = YOLO("D:\\work\\ultralytics\\runs\\detect\\train\\weights\\best.pt")
-# model = YOLO("yolo11n.pt")
+# model = RTDETR("zxx/rtdetr-r18.yaml").load("rtdetr-l.pt")
 
-results = model.predict(
-    [
-        "D:\\work\\datasets\\custom\\images\\train\\001.jpg",
-        "D:\\work\\datasets\\custom\\images\\train\\002.jpg",
-    ]
-)
-# print(results)
-# results[0].show()
-# results[1].show()
-print(results[0])
+# print(model.info())
+
+# model_dict = model.state_dict()
+
+# for k, v in model_dict.items():
+#     print(k)
+
+# model = RTDETR("rt-detr/rtdetr-resnet50.yaml").load("rtdetr-l.pt")
+
+# print(model.info())
+
+# model_dict = model.state_dict()
+
+# print(model.state_dict().items())
+
+model = RTDETR("rt-detr/rtdetr-l.yaml").load("rtdetr-l.pt")
+
+print(model.info())
+
+model_dict = model.state_dict()
+
+print(model.state_dict().items())
+
+
+
+
+# results = model.predict(
+#     [
+#         "D:\\work\\datasets\\custom\\images\\train\\001.jpg",
+#         "D:\\work\\datasets\\custom\\images\\train\\002.jpg",
+#     ]
+# )
+# # print(results)
+# # results[0].show()
+# # results[1].show()
+# print(results[0])

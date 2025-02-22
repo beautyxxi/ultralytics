@@ -68,6 +68,11 @@ from ultralytics.nn.modules.conv import (
     CBAM,
 )
 
+# 自定义改进模块
+from ultralytics.nn.uav import (
+    ResNetLayer_Basic,
+)
+
 from ultralytics.utils import DEFAULT_CFG_DICT, DEFAULT_CFG_KEYS, LOGGER, colorstr, emojis, yaml_load
 from ultralytics.utils.checks import check_requirements, check_suffix, check_yaml
 from ultralytics.utils.loss import (
@@ -1052,6 +1057,8 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
                 n = 1
         elif m is ResNetLayer:
             c2 = args[1] if args[3] else args[1] * 4
+        elif m is ResNetLayer_Basic:
+            c2 = args[1]
         elif m is nn.BatchNorm2d:
             args = [ch[f]]
         elif m is Concat:
